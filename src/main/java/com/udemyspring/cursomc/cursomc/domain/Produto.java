@@ -1,5 +1,7 @@
 package com.udemyspring.cursomc.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,15 +18,16 @@ public class Produto implements Serializable {
     private String nome;
     private Double preco;
 
+    public Produto(){
+    }
+
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name= "PRODUTO_CATEGORIA",
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id")
     )
     private List<Categoria> categorias = new ArrayList<>();
-
-    public Produto(){
-    }
 
     @Override
     public boolean equals(Object o) {
