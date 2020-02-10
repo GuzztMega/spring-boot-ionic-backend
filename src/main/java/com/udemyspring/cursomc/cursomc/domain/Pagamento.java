@@ -7,12 +7,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity //define a classe como uma entidade no BD
-public class Pagamento implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED) //define como deverá ser criado as tabelas em relação as subclasse; se tudo em uma tabela só ou individual
+public abstract class Pagamento implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id //especifica a coluna com Id
     private Integer id;
-    private EstadoPagamento estado;
+    private Integer estado;
 
     @OneToOne //relaciona duas entidades (relacionamento um para um)
     @JoinColumn(name = "pedido_id") //nomeia a coluna que possui a chave-estrangeira
@@ -24,7 +25,7 @@ public class Pagamento implements Serializable {
     public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
         super();
         this.id = id;
-        this.estado = estado;
+        this.estado = estado.getCod();
         this.pedido = pedido;
     }
 
@@ -36,12 +37,12 @@ public class Pagamento implements Serializable {
         this.id = id;
     }
 
-    public EstadoPagamento getEstado() {
-        return estado;
+    public EstadoPagamento getEstado() throws IllegalAccessException {
+        return EstadoPagamento.toEnum(estado);
     }
 
     public void setEstado(EstadoPagamento estado) {
-        this.estado = estado;
+        this.estado = estado.getCod();
     }
 
     public Pedido getPedido() {

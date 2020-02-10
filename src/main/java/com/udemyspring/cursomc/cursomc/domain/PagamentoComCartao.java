@@ -2,6 +2,9 @@ package com.udemyspring.cursomc.cursomc.domain;
 
 import com.udemyspring.cursomc.cursomc.domain.enums.EstadoPagamento;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PagamentoComCartao extends Pagamento {
     private static final long serialVersionUID = 1L;
 

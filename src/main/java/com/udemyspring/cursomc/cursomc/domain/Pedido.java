@@ -16,16 +16,21 @@ public class Pedido implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido") // cascade necessita para que faça mapeamento correto para as subclasses de Pagamento // mappedBy qual atributo na classe Pagamento está relacionando com esta classe (Pedido)
     private Pagamento pagamento;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "endereco_de_entrega_id")
     private Endereco enderecoDeEntrega;
 
     public Pedido(){}
 
-    public Pedido(Integer id, Date instante, Pagamento pagamento, Cliente cliente, Endereco enderecoDeEntrega) {
+    public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
         super();
         this.id = id;
         this.instante = instante;
-        this.pagamento = pagamento;
         this.cliente = cliente;
         this.enderecoDeEntrega = enderecoDeEntrega;
     }
