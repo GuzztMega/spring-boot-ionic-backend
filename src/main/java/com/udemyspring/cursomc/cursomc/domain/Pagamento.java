@@ -1,5 +1,6 @@
 package com.udemyspring.cursomc.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.udemyspring.cursomc.cursomc.domain.enums.EstadoPagamento;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public abstract class Pagamento implements Serializable {
     private Integer id;
     private Integer estado;
 
+    @JsonBackReference
     @OneToOne //relaciona duas entidades (relacionamento um para um)
     @JoinColumn(name = "pedido_id") //nomeia a coluna que possui a chave-estrangeira
     @MapsId //garante que o id do Pedido seja o mesmo id do Pagamento
