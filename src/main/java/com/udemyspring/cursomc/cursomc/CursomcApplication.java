@@ -102,6 +102,7 @@ public class CursomcApplication implements CommandLineRunner {
 
         Pedido ped1 = new Pedido(null, sdf.parse("30/09/2019 10:32"), cli1, e1);
         Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
+        Pedido ped3 = new Pedido(null, sdf.parse("01/01/2020 10:10"), cli2, e3);
 
         Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
         ped1.setPagamento(pagto1);
@@ -109,23 +110,30 @@ public class CursomcApplication implements CommandLineRunner {
         Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
         ped2.setPagamento(pagto2);
 
-        cli1.getPedidos().addAll(Arrays.asList(ped1,ped2));
+        Pagamento pagto3 = new PagamentoComCartao(null, EstadoPagamento.CANCELADO, ped3, 10);
+        ped3.setPagamento(pagto3);
 
-        pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
-        pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
+        cli1.getPedidos().addAll(Arrays.asList(ped1,ped2));
+        cli2.getPedidos().addAll(Arrays.asList(ped3));
+
+        pedidoRepository.saveAll(Arrays.asList(ped1,ped2, ped3));
+        pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2, pagto3));
 
         ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
         ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
         ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 500.00);
+        ItemPedido ip4 = new ItemPedido(ped3, p1, 25.00, 2, 2000.00);
+        ItemPedido ip5 = new ItemPedido(ped3, p2, 10.00, 2, 500.00);
 
         ped1.getItens().addAll(Arrays.asList(ip1, ip2));
-        ped2.getItens().addAll((Arrays.asList(ip3)));
+        ped2.getItens().addAll(Arrays.asList(ip3));
+        ped3.getItens().addAll(Arrays.asList(ip4, ip5));
 
-        p1.getItens().addAll(Arrays.asList(ip1));
-        p2.getItens().addAll(Arrays.asList(ip3));
+        p1.getItens().addAll(Arrays.asList(ip1, ip4));
+        p2.getItens().addAll(Arrays.asList(ip3, ip5));
         p3.getItens().addAll(Arrays.asList(ip2));
 
-        itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+        itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3, ip4, ip5));
     }
 }
 

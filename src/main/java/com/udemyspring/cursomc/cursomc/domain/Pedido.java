@@ -1,7 +1,6 @@
 package com.udemyspring.cursomc.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,11 +20,9 @@ public class Pedido implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instante;
 
-    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido") // cascade necessita para que faça mapeamento correto para as subclasses de Pagamento // mappedBy qual atributo na classe Pagamento está relacionando com esta classe (Pedido)
     private Pagamento pagamento;
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
