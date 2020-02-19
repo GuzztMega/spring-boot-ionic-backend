@@ -86,15 +86,16 @@ public class CursomcApplication implements CommandLineRunner {
         estadoRepository.saveAll(Arrays.asList(est1, est2, est3));
         cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 
-        Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", " 09563568999", TipoCliente.PESSOAFISICA);
+        Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "09563568999", TipoCliente.PESSOAFISICA);
         Cliente cli2 = new Cliente(null, "Aldev Corporation", "aldevcorp@aldev.com.br", "84656821000155", TipoCliente.PESSOAJURIDICA);
 
-        cli1.getTelefones().addAll(Arrays.asList("31999988852", "11998989976"));
+        cli1.getTelefones().addAll(Arrays.asList("31999988852", "1199898976"));
         cli2.getTelefones().addAll(Arrays.asList("41995368424", "4136011234"));
 
         Endereco e1 = new Endereco(null, "Avenida Flores", "300", "Apto 203", "Jardim", "38777034", cli1, c1);
         Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
-        Endereco e3 = new Endereco(null, "Avenida Afonso", "99", "Casa", "Jardim Claudia", "83326555", cli2, c3);
+        Endereco e3 = new Endereco(null, "A" +
+                "venida Afonso", "99", "Casa", "Jardim Claudia", "83326555", cli2, c3);
 
         cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
         cli2.getEnderecos().addAll(Arrays.asList(e3));
