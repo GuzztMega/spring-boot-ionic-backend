@@ -18,17 +18,14 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotEmpty(message = "Preenchimento obrigatório")
-    @Length(min = 5, max = 120, message = "O nome deve ter entre 5 e 120 caracteres")
     private String nome;
 
-    @NotEmpty(message = "Preenchimento obrigatório")
-    @Email(message = "Email inválido")
+    @Column(unique = true)
     private String email;
     private String cpfOuCnpj;
     private Integer tipo;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
 
     @ElementCollection
