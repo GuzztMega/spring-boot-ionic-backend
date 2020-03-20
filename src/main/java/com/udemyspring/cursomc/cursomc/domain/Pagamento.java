@@ -1,6 +1,7 @@
 package com.udemyspring.cursomc.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.udemyspring.cursomc.cursomc.domain.enums.EstadoPagamento;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Entity //define a classe como uma entidade no BD
 @Inheritance(strategy = InheritanceType.JOINED) //define como deverá ser criado as tabelas em relação as subclasse; se tudo em uma tabela só ou individual
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public abstract class Pagamento implements Serializable {
     private static final long serialVersionUID = 1L;
 
