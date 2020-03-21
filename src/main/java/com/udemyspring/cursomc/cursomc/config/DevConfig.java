@@ -22,7 +22,7 @@ public class DevConfig {
     @Bean
     public boolean instantiateDatabase() throws ParseException {
 
-        if(!"create".equals(strategy)){
+        if(!"update".equals(strategy)){
             return false;
         }
         dbService.instantiateTestDataBase();
