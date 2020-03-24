@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Entity //define a classe como uma entidade no BD
 @Inheritance(strategy = InheritanceType.JOINED) //define como deverá ser criado as tabelas em relação as subclasse; se tudo em uma tabela só ou individual
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
+@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public abstract class Pagamento implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -20,7 +20,7 @@ public abstract class Pagamento implements Serializable {
 
     @JsonIgnore
     @OneToOne //relaciona duas entidades (relacionamento um para um)
-    @JoinColumn(name = "pedido_id") //nomeia a coluna que possui a chave-estrangeira
+    @JoinColumn(name="pedido_id") //nomeia a coluna que possui a chave-estrangeira
     @MapsId //garante que o id do Pedido seja o mesmo id do Pagamento
     private Pedido pedido;
 
@@ -41,7 +41,7 @@ public abstract class Pagamento implements Serializable {
         this.id = id;
     }
 
-    public EstadoPagamento getEstado() throws IllegalAccessException {
+    public EstadoPagamento getEstado(){
         return EstadoPagamento.toEnum(estado);
     }
 

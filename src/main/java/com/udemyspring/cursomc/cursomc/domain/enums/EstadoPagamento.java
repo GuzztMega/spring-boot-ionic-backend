@@ -22,7 +22,7 @@ public enum EstadoPagamento {
         return descricao;
     }
 
-    public static EstadoPagamento toEnum(Integer cod) throws IllegalAccessException {
+    public static EstadoPagamento toEnum(Integer cod){
 
         if(cod == null){
             return null;
@@ -34,7 +34,7 @@ public enum EstadoPagamento {
             }
         }
 
-        throw new IllegalAccessException("ID inválido: " +cod);
+        throw new IllegalArgumentException("ID inválido: " +cod);
     }
 
 
