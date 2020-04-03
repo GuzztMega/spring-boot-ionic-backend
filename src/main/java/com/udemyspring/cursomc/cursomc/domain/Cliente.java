@@ -1,6 +1,7 @@
 package com.udemyspring.cursomc.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.udemyspring.cursomc.cursomc.domain.enums.Perfil;
 import com.udemyspring.cursomc.cursomc.domain.enums.TipoCliente;
 import org.hibernate.validator.constraints.Length;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 public class Cliente implements Serializable {
@@ -35,11 +37,16 @@ public class Cliente implements Serializable {
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
+    @ElementCollection
+    @CollectionTable(name="PERFIS")
+    private Set<Integer> perfis = new HashSet<>();
+
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente(){
+        addPerfil(Perfil.CLIENTE);
     }
 
     public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo, String senha) {
@@ -50,6 +57,7 @@ public class Cliente implements Serializable {
         this.cpfOuCnpj = cpfOuCnpj;
         this.tipo = (tipo==null) ? null : tipo.getCod();
         this.senha = senha;
+        addPerfil(Perfil.CLIENTE);
     }
 
     @Override
@@ -131,5 +139,14 @@ public class Cliente implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Set<Perfil> getPerfis(){
+        return perfis.stream().map(Perfil::toEnum).collect(Collectors.toSet());
+      //return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());  << SEM LAMBDA
+    }
+
+    public void addPerfil(Perfil perfil){
+        perfis.add(perfil.getCod());
     }
 }

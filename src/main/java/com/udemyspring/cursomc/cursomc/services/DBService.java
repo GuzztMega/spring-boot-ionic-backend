@@ -2,6 +2,7 @@ package com.udemyspring.cursomc.cursomc.services;
 
 import com.udemyspring.cursomc.cursomc.domain.*;
 import com.udemyspring.cursomc.cursomc.domain.enums.EstadoPagamento;
+import com.udemyspring.cursomc.cursomc.domain.enums.Perfil;
 import com.udemyspring.cursomc.cursomc.domain.enums.TipoCliente;
 import com.udemyspring.cursomc.cursomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class DBService {
 
     @Autowired
     private ProdutoRepository produtoRepository;
-
+    
     @Autowired
     private EstadoRepository estadoRepository;
 
@@ -103,11 +104,12 @@ public class DBService {
         estadoRepository.saveAll(Arrays.asList(est1, est2, est3));
         cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 
-        Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "09563568999", TipoCliente.PESSOAFISICA, pe.encode("123"));
-        Cliente cli2 = new Cliente(null, "Aldev Corporation", "guzzdev2020@gmail.com", "84656821000155", TipoCliente.PESSOAJURIDICA, pe.encode("321"));
-
+        Cliente cli1 = new Cliente(null, "Maria Silva", "guzzt.mega@gmail.com", "09563568999", TipoCliente.PESSOAFISICA, pe.encode("123"));
         cli1.getTelefones().addAll(Arrays.asList("31999988852", "1199898976"));
+
+        Cliente cli2 = new Cliente(null, "Aldev Corporation", "guzzdev2020@gmail.com", "84656821000155", TipoCliente.PESSOAJURIDICA, pe.encode("321"));
         cli2.getTelefones().addAll(Arrays.asList("41995368424", "4136011234"));
+        cli2.addPerfil(Perfil.ADMIN);
 
         Endereco e1 = new Endereco(null, "Avenida Flores", "300", "Apto 203", "Jardim", "38777034", cli1, c1);
         Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
