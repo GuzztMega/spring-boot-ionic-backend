@@ -4,11 +4,14 @@ import com.udemyspring.cursomc.cursomc.domain.Categoria;
 import com.udemyspring.cursomc.cursomc.domain.Cidade;
 import com.udemyspring.cursomc.cursomc.domain.Cliente;
 import com.udemyspring.cursomc.cursomc.domain.Endereco;
+import com.udemyspring.cursomc.cursomc.domain.enums.Perfil;
 import com.udemyspring.cursomc.cursomc.domain.enums.TipoCliente;
 import com.udemyspring.cursomc.cursomc.dto.ClienteDTO;
 import com.udemyspring.cursomc.cursomc.dto.ClienteNewDTO;
 import com.udemyspring.cursomc.cursomc.repositories.ClienteRepository;
 import com.udemyspring.cursomc.cursomc.repositories.EnderecoRepository;
+import com.udemyspring.cursomc.cursomc.security.UserSS;
+import com.udemyspring.cursomc.cursomc.services.exceptions.AuthorizationException;
 import com.udemyspring.cursomc.cursomc.services.exceptions.DataIntegrityException;
 import com.udemyspring.cursomc.cursomc.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +39,12 @@ public class ClienteService {
     private EnderecoRepository enderecoRepository;
 
     public Cliente find(Integer id) {
+
+        UserSS user = UserService.authenticated();
+        if(user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())){
+            throw new AuthorizationException("Acesso negado. Você não pode interceptar dados alheios!");
+        }
+
         Optional<Cliente> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " +id+ ", Tipo: " + Cliente.class.getName()
