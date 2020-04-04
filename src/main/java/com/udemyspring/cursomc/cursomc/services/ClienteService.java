@@ -43,7 +43,7 @@ public class ClienteService {
         UserSS user = UserService.authenticated();
         if(user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())){
             throw new AuthorizationException("Acesso negado. Você não pode interceptar dados alheios!");
-        }
+    }
 
         Optional<Cliente> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
