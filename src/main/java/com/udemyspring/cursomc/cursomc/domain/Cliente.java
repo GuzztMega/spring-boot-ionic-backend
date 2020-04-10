@@ -3,11 +3,8 @@ package com.udemyspring.cursomc.cursomc.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemyspring.cursomc.cursomc.domain.enums.Perfil;
 import com.udemyspring.cursomc.cursomc.domain.enums.TipoCliente;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -44,6 +41,8 @@ public class Cliente implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
+
+    private String imageUrl;
 
     public Cliente(){
         addPerfil(Perfil.CLIENTE);
@@ -148,5 +147,13 @@ public class Cliente implements Serializable {
 
     public void addPerfil(Perfil perfil){
         perfis.add(perfil.getCod());
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String image) {
+        this.imageUrl = image;
     }
 }

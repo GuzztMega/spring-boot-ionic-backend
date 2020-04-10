@@ -1,6 +1,5 @@
 package com.udemyspring.cursomc.cursomc.services;
 
-import com.udemyspring.cursomc.cursomc.domain.Categoria;
 import com.udemyspring.cursomc.cursomc.domain.Cidade;
 import com.udemyspring.cursomc.cursomc.domain.Cliente;
 import com.udemyspring.cursomc.cursomc.domain.Endereco;
@@ -113,6 +112,18 @@ public class ClienteService {
     }
 
     public URI uploadProfilePicture(MultipartFile multipartFile){
-        return s3Service.uploadFile(multipartFile);
+
+        UserSS user = UserService.authenticated();
+        if(user == null){
+            throw new AuthorizationException("Acesso negadis");
+        }
+
+        URI uri = s3Service.uploadFile(multipartFile);
+
+        Cliente cli = find(user.getId());
+        cli.setImageUrl(uri.toString());
+        repo.save(cli);
+
+        return uri;
     }
 }
