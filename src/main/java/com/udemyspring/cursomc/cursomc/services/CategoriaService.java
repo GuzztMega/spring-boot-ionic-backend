@@ -1,7 +1,6 @@
 package com.udemyspring.cursomc.cursomc.services;
 
 import com.udemyspring.cursomc.cursomc.domain.Categoria;
-import com.udemyspring.cursomc.cursomc.domain.Cliente;
 import com.udemyspring.cursomc.cursomc.dto.CategoriaDTO;
 import com.udemyspring.cursomc.cursomc.repositories.CategoriaRepository;
 import com.udemyspring.cursomc.cursomc.services.exceptions.DataIntegrityException;

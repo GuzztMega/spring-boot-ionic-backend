@@ -1,7 +1,6 @@
 package com.udemyspring.cursomc.cursomc.dto;
 
 import com.udemyspring.cursomc.cursomc.domain.Cidade;
-import com.udemyspring.cursomc.cursomc.domain.Estado;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;

@@ -1,11 +1,13 @@
 package com.udemyspring.cursomc.cursomc.services;
 
-import com.udemyspring.cursomc.cursomc.domain.*;
+import com.udemyspring.cursomc.cursomc.domain.Cliente;
+import com.udemyspring.cursomc.cursomc.domain.ItemPedido;
+import com.udemyspring.cursomc.cursomc.domain.PagamentoComBoleto;
+import com.udemyspring.cursomc.cursomc.domain.Pedido;
 import com.udemyspring.cursomc.cursomc.domain.enums.EstadoPagamento;
 import com.udemyspring.cursomc.cursomc.repositories.ItemPedidoRepository;
 import com.udemyspring.cursomc.cursomc.repositories.PagamentoRepository;
 import com.udemyspring.cursomc.cursomc.repositories.PedidoRepository;
-import com.udemyspring.cursomc.cursomc.repositories.ProdutoRepository;
 import com.udemyspring.cursomc.cursomc.security.UserSS;
 import com.udemyspring.cursomc.cursomc.services.exceptions.AuthorizationException;
 import com.udemyspring.cursomc.cursomc.services.exceptions.ObjectNotFoundException;
@@ -84,5 +86,4 @@ public class PedidoService {
         Cliente cliente = clienteService.find(user.getId());
         return repo.findByCliente(cliente, pageRequest);
     }
-
 }

@@ -3,7 +3,6 @@ package com.udemyspring.cursomc.cursomc.resources;
 import com.udemyspring.cursomc.cursomc.domain.Cidade;
 import com.udemyspring.cursomc.cursomc.domain.Estado;
 import com.udemyspring.cursomc.cursomc.dto.CidadeDTO;
-import com.udemyspring.cursomc.cursomc.dto.ClienteDTO;
 import com.udemyspring.cursomc.cursomc.dto.EstadoDTO;
 import com.udemyspring.cursomc.cursomc.services.CidadeService;
 import com.udemyspring.cursomc.cursomc.services.EstadoService;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 

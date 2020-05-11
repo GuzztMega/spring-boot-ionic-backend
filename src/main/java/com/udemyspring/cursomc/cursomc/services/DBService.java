@@ -48,14 +48,14 @@ public class DBService {
     public void instantiateTestDataBase() throws ParseException {
         Categoria cat1 = new Categoria(null, "Informática");
         Categoria cat2 = new Categoria(null, "Escritório");
-        Categoria cat3 = new Categoria(null, "Recursos Humanos");
-        Categoria cat4 = new Categoria(null, "Financeiro");
-        Categoria cat5 = new Categoria(null, "Atendimento");
-        Categoria cat6 = new Categoria(null, "Suporte Técnico");
-        Categoria cat7 = new Categoria(null, "Logistica");
+        Categoria cat3 = new Categoria(null, "Enxoval");
+        Categoria cat4 = new Categoria(null, "Eletrônicos");
+        Categoria cat5 = new Categoria(null, "Jardinagem");
+        Categoria cat6 = new Categoria(null, "Decoração");
+        Categoria cat7 = new Categoria(null, "Cosméticos");
 
         Produto p1 = new Produto(null, "Computador", 2000.00);
-        Produto p2 = new Produto(null, "Monitor", 500.00);
+        Produto p2 = new Produto(null, "Impressora", 500.00);
         Produto p3 = new Produto(null, "Mouse", 80.00);
         Produto p4 = new Produto(null, "Mesa de escritório", 300.00);
         Produto p5 = new Produto(null, "Toalha", 50.00);
@@ -192,16 +192,16 @@ public class DBService {
         estadoRepository.saveAll(Arrays.asList(est1, est2, est3));
         cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 
-        Cliente cli1 = new Cliente(null, "Maria Silva", "guzzt.mega@gmail.com", "09563568999", TipoCliente.PESSOAFISICA, pe.encode("123"));
+        Cliente cli1 = new Cliente(null, "Philipe Orleans", "guzzt.mega@gmail.com", "09563568999", TipoCliente.PESSOAFISICA, pe.encode("123"));
         cli1.getTelefones().addAll(Arrays.asList("31999988852", "1199898976"));
 
-        Cliente cli2 = new Cliente(null, "Aldev Corporation", "guzzdev2020@gmail.com", "84656821000155", TipoCliente.PESSOAJURIDICA, pe.encode("321"));
-        cli2.getTelefones().addAll(Arrays.asList("41995368424", "4136011234"));
+        Cliente cli2 = new Cliente(null, "Capsule Corporation", "guzzdev2020@gmail.com", "84656821000155", TipoCliente.PESSOAJURIDICA, pe.encode("321"));
+        cli2.getTelefones().addAll(Arrays.asList("4199777788", "4136011233"));
         cli2.addPerfil(Perfil.ADMIN);
 
         Endereco e1 = new Endereco(null, "Avenida Flores", "300", "Apto 203", "Jardim", "38777034", cli1, c1);
         Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
-        Endereco e3 = new Endereco(null, "Avenida Afonso", "99", "Casa", "Jardim Claudia", "83326555", cli2, c3);
+        Endereco e3 = new Endereco(null, "Avenida Jacob", "99", "Casa", "Birgorrilho", "83326555", cli2, c3);
 
         cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
         cli2.getEnderecos().addAll(Arrays.asList(e3));

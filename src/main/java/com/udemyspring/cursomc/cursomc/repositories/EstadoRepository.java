@@ -1,6 +1,5 @@
 package com.udemyspring.cursomc.cursomc.repositories;
 
-import com.udemyspring.cursomc.cursomc.domain.Cliente;
 import com.udemyspring.cursomc.cursomc.domain.Estado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,8 +1,6 @@
 package com.udemyspring.cursomc.cursomc.resources;
 
-import com.udemyspring.cursomc.cursomc.domain.Categoria;
 import com.udemyspring.cursomc.cursomc.domain.Cliente;
-import com.udemyspring.cursomc.cursomc.dto.CategoriaDTO;
 import com.udemyspring.cursomc.cursomc.dto.ClienteDTO;
 import com.udemyspring.cursomc.cursomc.dto.ClienteNewDTO;
 import com.udemyspring.cursomc.cursomc.services.ClienteService;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;

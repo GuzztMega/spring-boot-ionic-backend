@@ -1,6 +1,5 @@
 package com.udemyspring.cursomc.cursomc.resources;
 
-import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
 import com.udemyspring.cursomc.cursomc.dto.EmailDTO;
 import com.udemyspring.cursomc.cursomc.security.JWTUtil;
 import com.udemyspring.cursomc.cursomc.security.UserSS;

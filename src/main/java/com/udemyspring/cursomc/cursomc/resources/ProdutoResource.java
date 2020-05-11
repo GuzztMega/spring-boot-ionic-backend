@@ -1,8 +1,6 @@
 package com.udemyspring.cursomc.cursomc.resources;
 
-import com.udemyspring.cursomc.cursomc.domain.Categoria;
 import com.udemyspring.cursomc.cursomc.domain.Produto;
-import com.udemyspring.cursomc.cursomc.dto.CategoriaDTO;
 import com.udemyspring.cursomc.cursomc.dto.ProdutoDTO;
 import com.udemyspring.cursomc.cursomc.resources.utils.URL;
 import com.udemyspring.cursomc.cursomc.services.ProdutoService;
